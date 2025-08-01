@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "LeetPush",
+  "version": "1.0",
+  "description": "Push LeetCode solutions to GitHub.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
