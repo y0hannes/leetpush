@@ -9,16 +9,23 @@
 <body>
   <h1>LeetPush</h1>
   <div id="title"></div>
-  <form id="github-form">
-    <label for="git-username">GitHub Username : </label>
-    <input type="text" name="name" id="git-username">
-    <label for="git-repo">Repository name : </label>
-    <input type="text" name="git-repo" id="git-repo">
-    <label for="git-token">Git token : </label>
-    <input type="password" name="git-token" id="git-token">
-  </form>
-  <button id="save-btn">Save</button>
-  <button id="pushBtn">Push to GitHub</button>
+  <div id="config-view">
+    <form id="github-form">
+      <label for="git-username">GitHub Username : </label>
+      <input type="text" name="name" id="git-username">
+      <label for="git-repo">Repository name : </label>
+      <input type="text" name="git-repo" id="git-repo">
+      <label for="git-token">Git token : </label>
+      <input type="password" name="git-token" id="git-token">
+      <button id="save-btn">Save</button>
+    </form>
+  </div>
+  <div id="main-view" style="display:none">
+    <p>Ready to push to <span id="repo-name-display"></span></p>
+    <button id="pushBtn">Push to GitHub</button>
+    <hr>
+    <button id="change-settings-btn">Change Settings</button>
+  </div>
 </body>
 
 </html>
