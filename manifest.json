@@ -6,12 +6,19 @@
   "permissions": [
     "activeTab",
     "storage",
-    "scripting"
+    "scripting",
+    "identity"
   ],
   "host_permissions": [
     "https://leetcode.com/*"
   ],
   "action": {
     "default_popup": "popup.html"
+  },
+  "oauth2": {
+    "client_id": "YOUR_GITHUB_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": [
+      "repo"
+    ]
   }
 }

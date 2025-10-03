@@ -4,17 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainView = document.getElementById('main-view')
   const repoNameDisplay = document.getElementById('repo-name-display')
 
-  const keysToGet = ['githubUsername', 'githubReponame', 'accessToken']
+  const keysToGet = ['githubUsername', 'githubReponame', 'accessToken'];
+
   chrome.storage.local.get(keysToGet, (result) => {
-    if (accessToken && githubReponame) {
-      mainView.style.display = 'block'
-      configView.style.display = 'none'
-      repoNameDisplay.textContent = result.githubReponame
+    const { githubUsername, githubReponame, accessToken } = result;
+
+    if (githubUsername && githubReponame && accessToken) {
+      mainView.style.display = 'block';
+      configView.style.display = 'none';
+      repoNameDisplay.textContent = githubReponame;
     } else {
-      mainView.style.display = 'none'
-      configView.style.display = 'block'
+      mainView.style.display = 'none';
+      configView.style.display = 'block';
     }
-  })
+  });
 
   document.getElementById('pushBtn').addEventListener('click', () => {
     chrome.storage.local.get(keysToGet, (result) => {
@@ -37,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  document.getElementById('save-btn').addEventListener('click', () => {
+  document.getElementById('save-btn').addEventListener('click', (event) => {
+    event.preventDefault()
+
     const githubUsername = document.getElementById('git-username').value
     const githubReponame = document.getElementById('git-repo').value
     const accessToken = document.getElementById('git-token').value
