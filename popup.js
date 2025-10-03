@@ -61,14 +61,49 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('git-token').value = ''
   })
 
-})
 
-chrome.runtime.onMessage.addListener(
-  (request, sender, sendResponse) => {
-    if (request.title) {
-      console.log("Title:", request.title)
-      console.log("URL:", request.url)
-      console.log("Code:", request.code)
+  chrome.runtime.onMessage.addListener(
+    (request, sender, sendResponse) => {
+      if (request.title) {
+        console.log("Title:", request.title)
+        console.log("URL:", request.url)
+        console.log("Code:", request.code)
+      }
     }
-  }
-)
+  )
+
+  document.getElementById('github-login-btn').addEventListener('click', () => {
+    console.log('reading envent')
+    const clientId = 'Ov23liaXlwEUylxBjzey'
+    const redirectUri = 'https://overnumerously-pavid-donette.ngrok-free.app/oauth/callback'
+
+    const scope = 'repo'
+
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`
+
+    chrome.identity.launchWebAuthFlow({
+      url: authUrl,
+      interactive: true
+    }, (redirectUrl) => {
+      if (chrome.runtime.lastError) {
+        console.error(chrome.runtime.lastError.message)
+        return
+      }
+
+      console.log('Redirect URL received:', redirectUrl);
+
+      const url = new URL(redirectUrl)
+      const accessToken = url.searchParams.get('token')
+
+      if (accessToken) {
+        chrome.storage.local.set({ accessToken }, () => {
+          console.log('Access token saved')
+          location.reload()
+        })
+      } else {
+        console.error('No token found in redirect')
+      }
+    })
+  })
+
+})

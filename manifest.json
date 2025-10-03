@@ -2,23 +2,28 @@
   "manifest_version": 3,
   "name": "LeetPush",
   "version": "1.0",
-  "description": "Push LeetCode solutions to GitHub.",
+    "description": "Push LeetCode solutions to GitHub.",
   "permissions": [
-    "activeTab",
+    "identity",
     "storage",
     "scripting",
-    "identity"
+    "tabs",
+    "activeTab"
   ],
-  "host_permissions": [
-    "https://leetcode.com/*"
-  ],
+  "oauth2": {
+    "client_id": "Ov23liaXlwEUylxBjzey",
+    "scopes": ["repo", "user"]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html"
   },
-  "oauth2": {
-    "client_id": "YOUR_GITHUB_CLIENT_ID.apps.googleusercontent.com",
-    "scopes": [
-      "repo"
-    ]
-  }
+  "host_permissions": [
+  "*://*.ngrok.io/*",
+
+    "https://github.com/*"
+  ]
 }
+
