@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "rootDir": "content",
+    "outDir": "dist",
+    "strict": true
+  },
+  "include": ["content/**/*.ts"]
+}

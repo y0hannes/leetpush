@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub Auth Callback</title>
+  <script>
+    window.onload = () => {
+      const url = new URL(window.location.search);
+      const token = url.searchParams.get('token');
+      const username = url.searchParams.get('username');
+
+      if (token && username) {
+        chrome.storage.local.set({ accessToken: token }, () => {
+          window.close();
+        });
+      } else {
+        console.error('No token or username found in URL');
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>Please wait, authenticating...</p>
+</body>
+</html>

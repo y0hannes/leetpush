@@ -3,22 +3,10 @@
   "name": "LeetPush",
   "version": "1.0",
   "description": "Push LeetCode solutions to GitHub.",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "scripting",
-    "identity"
-  ],
-  "host_permissions": [
-    "https://leetcode.com/*"
-  ],
-  "action": {
-    "default_popup": "popup.html"
-  },
-  "oauth2": {
-    "client_id": "YOUR_GITHUB_CLIENT_ID.apps.googleusercontent.com",
-    "scopes": [
-      "repo"
-    ]
-  }
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*/"],
+      "js": ["dist/leetcode.js"]
+    }
+  ]
 }
